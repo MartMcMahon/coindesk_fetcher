@@ -29,7 +29,6 @@
           return res.json();
         })
         .then((data) => {
-          console.log(data.data);
           let prices = data.data.prices;
           let price = prices[prices.length - 1].price;
           document.getElementById("price").innerHTML = price;
