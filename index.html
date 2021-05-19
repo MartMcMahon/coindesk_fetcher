@@ -12,7 +12,7 @@
     </style>
   </head>
   <script>
-    const getPrice = () => {
+    const coindesk = () => {
       fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
         .then(function(response) {
           return response.json();
@@ -23,11 +23,23 @@
         });
     };
 
+    const getPrice = () => {
+      fetch("https://sochain.com//api/v2/get_price/DOGE/USD")
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data.data);
+          let prices = data.data.prices;
+          let price = prices[prices.length - 1].price;
+          document.getElementById("price").innerHTML = price;
+        });
+    };
+
     getPrice();
     const interval = setInterval(getPrice, 30000);
   </script>
   <body>
-    <div id="price"> </div>
-    <div class="label">powered by coindesk</div>
+    <div id="price"></div>
   </body>
 </html>
